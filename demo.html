@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery-phslider demo</title>
+    <script src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        google.load("jquery", "1.7.1");
+    </script>
+    <style type="text/css">
+        .slider { border: black 1px solid; }
+        .slider .slide {
+            font-family: "Trebuchet MS", Helvetica, sans-serif;
+            font-size: 40px;
+            line-height: 300px;
+            text-align: center;
+        }
+
+        .orange { background: #ffa07a; }
+        .green { background: #90ee90; }
+        .blue { background: #add8e6 }
+        .gray { background: #d3d3d3; }
+        .red { background: #f08080; }
+    </style>
+    <script type="text/javascript" src="./jquery.phslider.js"></script>
+</head>
+<body>
+    <div class="slider">
+        <div class="slide orange" data-animation="slidetop">
+            Slide top
+        </div>
+        <div class="slide green" data-animation="slideright">
+            Slide right
+        </div>
+        <div class="slide blue" data-animation="slidebottom">
+            Slide bottom
+        </div>
+        <div class="slide gray" data-animation="slideleft">
+            Slide left
+        </div>
+        <div class="slide red" data-animation="fade">
+            Fade
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function() {
+            $('body .slider').phslider({
+                width: 600,
+                height: 300
+            });
+        })
+    </script>
+</body>
+</html>
