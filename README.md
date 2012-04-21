@@ -71,4 +71,4 @@ Available options:
 
 ## Demo
 
-View **demo.html** included with the plugin.
+View **demo.html** included with the plugin or view the [online demo](http://pyronhell.github.com/jquery-phslider/).
