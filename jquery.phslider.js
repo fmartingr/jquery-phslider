@@ -222,7 +222,7 @@
 
     Plugin.prototype.getNextSlide = function () {
         var next = (actualSlide + 1);
-        if (!$(this.element).children('[data-slide="' + next + '"]').length) {
+        if (next > slidesNumber) {
             next = 1;
         }
         nextSlide = next;
