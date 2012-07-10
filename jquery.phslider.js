@@ -223,7 +223,7 @@
     Plugin.prototype.getDataFromSlide = function (slide) {
         var _element = $(this.element).children('[data-slide="' + slide + '"]');
         $actualSlide = {
-            'slide':_element.attr('data-slide'),
+            'slide':parseInt(_element.attr('data-slide')),
             'duration':(_element.attr('data-duration')) ? _element.attr('data-duration') : this.options.duration,
             'animation':(_element.attr('data-animation')) ? _element.attr('data-animation') : this.options.animation,
             'animationDuration':(_element.attr('data-animation-duration')) ? _element.attr('data-animation-duration') : this.options.animationDuration
