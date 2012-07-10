@@ -46,7 +46,14 @@
         $(function() {
             $('body .slider').phslider({
                 width: 600,
-                height: 300
+                height: 300,
+                onInit: function() {
+                    // INIT CODE
+                },
+                onSlideChange: function(slide, totalSlides) {
+                    // console.log(slide);
+                    // console.log(totalSlides);
+                }
             });
         })
     </script>

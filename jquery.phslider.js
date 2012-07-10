@@ -9,7 +9,12 @@
             duration:1,
             animation:'fade',
             // Miliseconds
-            animationDuration:2000
+            animationDuration:2000,
+            // Handlers
+            onInit:function () {
+            },
+            onSlideChange:function (slide, totalSlides) {
+            }
         },
         actualSlide = 1,
         nextSlide = 1,
@@ -48,6 +53,7 @@
         this.createViewport();
         this.prepareStyles();
         this.prepareSlides();
+        this.options.onInit();
         this.start();
     };
 
@@ -177,7 +183,8 @@
 
     Plugin.prototype.start = function () {
         this.getNextSlide();
-        this.getDataFromSlide(actualSlide)
+        this.getDataFromSlide(actualSlide);
+        this.options.onSlideChange($actualSlide, slidesNumber);
         this.waitForNextSlide()
     }
 
@@ -190,6 +197,7 @@
         this.animate();
         actualSlide = _slide;
         this.getDataFromSlide(actualSlide);
+        this.options.onSlideChange($actualSlide, slidesNumber);
         this.getNextSlide();
         this.waitForNextSlide();
     }

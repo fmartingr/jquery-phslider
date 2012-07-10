@@ -2,7 +2,7 @@
 
 ## Overview
 
-**jquery-phslider** is a simple slider for jquery. 
+**jquery-phslider** is a simple jquery slider plugin. 
 
 Any bugs and suggestions, please open a ticket. Thanks.
 
@@ -33,7 +33,7 @@ Any bugs and suggestions, please open a ticket. Thanks.
 		})
 	</script>
 	
-	or
+or
 	
 	<script type="text/javascript">
 		$(function() {
@@ -45,16 +45,33 @@ Any bugs and suggestions, please open a ticket. Thanks.
 
 ### Options
 
-- **width**: slider width
-- **height** slider height
-- **duration** default duration of each slide in seconds
-- **animation** default animation of each slide
+- **width**: [int] slider width
+- **height** [int] slider height
+- **duration** [int] default duration of each slide in seconds
+- **animation** [str] default animation of each slide
+- **onInit** [function()] perform operations on phslider init sequence
+- **onSlideChange** [function(obj slide, int totalSlides)] perform operations when a slide changes
 
-**About the width/height options** if you do not define width/height parameters, the plugin will get it from the parent element, there's no default width/height values.
+**About the width/height options** if you do not define width/height parameters, the plugin will get it from the parent element, there's no default width/height values by default.
 
 #### Animations
 
 **slidetop**, **slideleft**, **slidebottom**, **slideright** and **fade**.
+
+#### Handlers
+##### onInit()
+...
+##### onSlideChange(slide, totalSlides)
+	
+	
+	slide = {
+		slide: null, // Current slide number
+		duration: null, // Current slide duration
+		animation: null, // Current slide animation
+		animationDuration: null // Current slide animation duration
+	}
+
+	totalSlides = null; // Total number of slides
 
 ###  Customize each slide options
 
