@@ -18,6 +18,7 @@
         },
         actualSlide = 1,
         nextSlide = 1,
+        previousSlide = null,
         $actualSlide = null,
         slidesNumber = 0,
         _styles = null;
@@ -199,6 +200,7 @@
         this.getDataFromSlide(actualSlide);
         this.options.onSlideChange($actualSlide, slidesNumber);
         this.getNextSlide();
+        this.getPreviousSlide();
         this.waitForNextSlide();
     }
 
@@ -226,6 +228,18 @@
             next = 1;
         }
         nextSlide = next;
+    }
+
+    Plugin.prototype.prev = function () {
+        this.slideTo(previousSlide);
+    }
+
+    Plugin.prototype.getPreviousSlide = function () {
+        var previous = (actualSlide - 1);
+        if (previous < 1) {
+            previous = slidesNumber;
+        }
+        previousSlide = previous;
     }
 
     Plugin.prototype.getDataFromSlide = function (slide) {
