@@ -53,7 +53,7 @@
         this.createViewport();
         this.prepareStyles();
         this.prepareSlides();
-        this.options.onInit();
+        this.options.onInit(slidesNumber);
         this.start();
     };
 

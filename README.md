@@ -49,7 +49,7 @@ or
 - **height** [int] slider height
 - **duration** [int] default duration of each slide in seconds
 - **animation** [str] default animation of each slide
-- **onInit** [function()] perform operations on phslider init sequence
+- **onInit** [function(int totalSlides)] perform operations on phslider init sequence
 - **onSlideChange** [function(obj slide, int totalSlides)] perform operations when a slide changes
 
 **About the width/height options** if you do not define width/height parameters, the plugin will get it from the parent element, there's no default width/height values by default.
@@ -59,8 +59,8 @@ or
 **slidetop**, **slideleft**, **slidebottom**, **slideright** and **fade**.
 
 #### Handlers
-##### onInit()
-...
+##### onInit(totalSlides)
+	totalSlides = null; // Total number of slides
 ##### onSlideChange(slide, totalSlides)
 	
 	
