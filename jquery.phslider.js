@@ -21,7 +21,17 @@
         previousSlide = null,
         $actualSlide = null,
         slidesNumber = 0,
-        _styles = null;
+        _styles = null,
+        _slideshowRunning = true;
+
+
+    var methods = {
+        pause: true,
+        play: true,
+        next: true,
+        prev: true,
+        slideTo: true
+    }
 
     // The actual plugin constructor
     function Plugin(element, options) {
@@ -191,22 +201,26 @@
 
     Plugin.prototype.waitForNextSlide = function () {
         var waitTime = $actualSlide.duration;
-        setTimeout($.proxy(this.next, this), waitTime * 1000);
+        if (_slideshowRunning) {
+            setTimeout($.proxy(this.next, this), waitTime * 1000);
+        }
     }
 
     Plugin.prototype.slideTo = function (_slide) {
-        this.animate();
+        this.animate(_slide);
         actualSlide = _slide;
         this.getDataFromSlide(actualSlide);
         this.options.onSlideChange($actualSlide, slidesNumber);
         this.getNextSlide();
         this.getPreviousSlide();
-        this.waitForNextSlide();
+        if (_slideshowRunning) {
+            this.waitForNextSlide();
+        }
     }
 
-    Plugin.prototype.animate = function () {
+    Plugin.prototype.animate = function (_slide) {
         var _actual = $(this.element).children('[data-slide="' + actualSlide + '"]');
-        var _next = $(this.element).children('[data-slide="' + nextSlide + '"]');
+        var _next = $(this.element).children('[data-slide="' + _slide + '"]');
 
         _next.css(_styles[$actualSlide.animation].nextSlide);
         _actual.css(_styles[$actualSlide.animation].actualSlide);
@@ -242,6 +256,15 @@
         previousSlide = previous;
     }
 
+    Plugin.prototype.pause = function() {
+        _slideshowRunning = false;
+    }
+
+    Plugin.prototype.play = function() {
+        _slideshowRunning = true;
+        this.waitForNextSlide();
+    }
+
     Plugin.prototype.getDataFromSlide = function (slide) {
         var _element = $(this.element).children('[data-slide="' + slide + '"]');
         $actualSlide = {
@@ -263,11 +286,20 @@
     // A really lightweight plugin wrapper around the constructor,
     // preventing against multiple instantiations
     $.fn[pluginName] = function (options) {
-        return this.each(function () {
-            if (!$.data(this, 'plugin_' + pluginName)) {
-                $.data(this, 'plugin_' + pluginName, new Plugin(this, options));
-            }
-        });
+        if (methods[options]) {
+            return this.each(function () {
+                var instance = $.data(this, 'plugin_' + pluginName);
+                if (instance instanceof Plugin && typeof instance[options] === 'function') {
+                    instance[options].apply(instance, arguments);
+                }
+            });
+        } else {
+            return this.each(function () {
+                if (!$.data(this, 'plugin_' + pluginName)) {
+                    $.data(this, 'plugin_' + pluginName, new Plugin(this, options));
+                }
+            });
+        }
     }
 
 })(jQuery, window, document);
