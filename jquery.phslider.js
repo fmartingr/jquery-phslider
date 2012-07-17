@@ -202,7 +202,13 @@
     Plugin.prototype.waitForNextSlide = function () {
         var waitTime = $actualSlide.duration;
         if (_slideshowRunning) {
-            setTimeout($.proxy(this.next, this), waitTime * 1000);
+            setTimeout($.proxy(this.autoSlide, this), waitTime * 1000);
+        }
+    }
+
+    Plugin.prototype.autoSlide = function() {
+        if (_slideshowRunning) {
+            this.next();
         }
     }
 
