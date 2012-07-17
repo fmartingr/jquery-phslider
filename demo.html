@@ -8,12 +8,35 @@
         google.load("jquery", "1.7.1");
     </script>
     <style type="text/css">
+        body { font-family: Helvetica, sans-serif; }
         .slider { border: black 1px solid; }
         .slider .slide {
             font-family: "Trebuchet MS", Helvetica, sans-serif;
             font-size: 40px;
             line-height: 300px;
             text-align: center;
+        }
+
+        .slider-info {
+            position: absolute;
+            background: #FFF;
+            border-top: #000 1px solid;
+            bottom: 0;
+            margin-top: 4px;
+            padding: 3px 0;
+            text-align: center;
+            width: 100%;
+            z-index: 999;
+        }
+        .slider-info div {
+            display: inline;
+            margin-left: 3px;
+        }
+        .slider-info div:before {
+            content: ' | ';
+        }
+        .slider-info div:first-child:before {
+            content: '';
         }
 
         .orange { background: #ffa07a; }
@@ -27,19 +50,23 @@
 <body>
     <div class="slider">
         <div class="slide orange" data-animation="slidetop">
-            Slide top
+            (1) Slide top
         </div>
         <div class="slide green" data-animation="slideright">
-            Slide right
+            (2) Slide right
         </div>
         <div class="slide blue" data-animation="slidebottom">
-            Slide bottom
+            (3) Slide bottom
         </div>
         <div class="slide gray" data-animation="slideleft">
-            Slide left
+            (4) Slide left
         </div>
         <div class="slide red" data-animation="fade">
-            Fade
+            (5) Fade
+        </div>
+        <div class="slider-info">
+            <div data-phslider="prevButton">prev</div>
+            <div data-phslider="nextButton">next</div>
         </div>
     </div>
     <script type="text/javascript">
@@ -48,8 +75,9 @@
                 width: 600,
                 height: 300,
                 onInit: function(totalSlides) {
-                    // console.log(totalSlides)
-                    // Do something
+                    for (var i = 1; i <= totalSlides; i++) {
+                        $('.slider-info').append('<div data-phslider="slideToButton" data-slide="' + i + '">' + i + '</div>');
+                    }
                 },
                 onSlideChange: function(slide, totalSlides) {
                     // console.log(slide);

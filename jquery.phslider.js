@@ -65,8 +65,25 @@
         this.prepareStyles();
         this.prepareSlides();
         this.options.onInit(slidesNumber);
+        this.prepareButtons();
         this.start();
     };
+
+    Plugin.prototype.prepareButtons = function() {
+        $('*[data-phslider="nextButton"]').click({ _this: this }, function(e) {
+            e.data._this.next(true);
+        })
+
+        $('*[data-phslider="prevButton"]').click({ _this: this }, function(e) {
+            e.data._this.prev(true);
+        })
+
+        $('*[data-phslider="slideToButton"]').click({ _this: this }, function(e) {
+            var slide = parseInt($(this).attr('data-slide'));
+            e.data._this.slideTo(slide);
+            e.data._this.pause();
+        })
+    }
 
     Plugin.prototype.prepareStyles = function () {
         _styles = {
