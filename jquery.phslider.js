@@ -238,8 +238,11 @@
         _next.css(_styles.reset);
     }
 
-    Plugin.prototype.next = function () {
+    Plugin.prototype.next = function (_manual) {
         this.slideTo(nextSlide)
+        if (_manual === true) {
+            this.pause();
+        }
     }
 
     Plugin.prototype.getNextSlide = function () {
@@ -250,8 +253,11 @@
         nextSlide = next;
     }
 
-    Plugin.prototype.prev = function () {
+    Plugin.prototype.prev = function (_manual) {
         this.slideTo(previousSlide);
+        if (_manual === true) {
+            this.pause();
+        }
     }
 
     Plugin.prototype.getPreviousSlide = function () {
