@@ -6,9 +6,10 @@
 
 Any bugs and suggestions, please open a ticket. Thanks.
 
-## Compatibility 
-
-*work in progress*
+## TODO
+- Custom animations
+- Check compatibility
+- Let more than one plugin instance (multiple sliders)
 
 ## How to use
 
@@ -58,12 +59,11 @@ or
 
 **slidetop**, **slideleft**, **slidebottom**, **slideright** and **fade**.
 
+
 #### Handlers
 ##### onInit(totalSlides)
 	totalSlides = null; // Total number of slides
 ##### onSlideChange(slide, totalSlides)
-	
-	
 	slide = {
 		slide: null, // Current slide number
 		duration: null, // Current slide duration
@@ -86,6 +86,15 @@ Available options:
 - **data-duration**: Duration of the slide
 - **data-animation**: Animation of the slide 
 
+### Using the button handlers
+It's really easy too. Just create HTML elements with the attribute `data-phslider` set to:
+
+- **nextButton**: Go to next slide 
+- **prevButton**: Go to previous slide
+- **slideToButton**: Go to slide defined in `data-slide` attribute
+
+See example for more details.
+
 ## Demo
 
-View **demo.html** included with the plugin or view the [online demo](http://pyronhell.github.com/jquery-phslider/).
+View **demo.html** included with the plugin or the [online demo](http://pyronhell.github.com/jquery-phslider/) (0.3.1).
